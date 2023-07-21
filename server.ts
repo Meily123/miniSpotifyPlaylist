@@ -13,7 +13,7 @@ mongoose.connect (connectionString, {
     useUnifiedTopology: true,
     autoIndex: true,
 } as ConnectOptions)
-    .then (() => {
+    .then ((db) => {
         console.log (connectionString);
         console.log ("Database Connected Successfuly.");
     })
