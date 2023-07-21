@@ -1,13 +1,12 @@
 import express from 'express';
 import songUsecase from './song.service';
-import SongService from './song.service';
 import bodyParser from "body-parser";
 
 const router = express.Router ();
 
 const getPlaylist = router.get ('/song', async (req, res) => {
     try {
-        const playlist = await SongService.getPlaylist ();
+        const playlist = await songUsecase.getPlaylist ();
         res.status (200).json (playlist);
     } catch (error) {
         console.log (`ERROR : ${error}`);

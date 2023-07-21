@@ -5,4 +5,4 @@ const routes: express.Router[] = [
     ...SongController,
 ]
 
-export default routes;
+module.exports = routes;
