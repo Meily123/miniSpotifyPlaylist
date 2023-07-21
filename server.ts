@@ -1,22 +1,31 @@
 import routes from './routes';
+import express from 'express';
+import mongoose, {ConnectOptions} from 'mongoose';
 
-const express = require('express');
-
-const mongoose = require('mongoose');
+require ('dotenv').config ();
 
 const port = process.env["PORT "];
-
-mongoose.connect(process.env["MONGO_CONNECTION_STRING "], {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const connectionString: string = process.env["MONGO_CONNECTION_STRING"]!;
 
 
-const app = express();
+mongoose.connect (connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    autoIndex: true,
+} as ConnectOptions)
+    .then ((db) => {
+        console.log (connectionString);
+        console.log ("Database Connected Successfuly.");
+    })
+    .catch ((err) => {
+        console.log ("Error Connectiong to the Database");
+        console.log (`ERROR: ${err}`);
+    });
 
 
-app.use(routes);
+const app = express ();
+app.use (routes);
 
-app.listen( port, () => {
-  console.log('Server is running on port 3000');
+app.listen (port, () => {
+    console.log ('Server is running on port 3000');
 });
