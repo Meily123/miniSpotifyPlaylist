@@ -1,7 +1,7 @@
 # miniSpotifyPlaylist
 
 ## How to run project:
-### 1. fill .env_sample with your own
+### 1. change .env.example into .env and fill with your own
 ### 2. setup
 ```
 npm i mongoose express
